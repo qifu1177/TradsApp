@@ -1,0 +1,29 @@
+﻿using App.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TradesApp.Views
+{
+    public partial class LoginView : UserControl
+    {
+        public event Action<UserGroupType> Login;
+        public LoginView()
+        {
+            InitializeComponent();
+        }
+
+        private void btLogin_Click(object sender, EventArgs e)
+        {
+            Login(UserGroupType.Admin);
+        }
+
+       
+    }
+}
