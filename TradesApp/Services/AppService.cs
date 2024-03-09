@@ -18,7 +18,7 @@ namespace TradesApp.Services
         }
         private void Init()
         {
-            Config.ConnectionString= ConfigurationManager.ConnectionStrings["AppDb"].ConnectionString; ;
+            Config.ConnectionString= ConfigurationManager.ConnectionStrings["AppDb"].ConnectionString;
         }
     }
 }

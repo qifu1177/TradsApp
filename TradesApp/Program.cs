@@ -1,5 +1,8 @@
 using App.DataAccess;
+using App.DataAccess.Services;
 using App.Infrastructure.Common;
+using App.Infrastructure.Interfaces;
+using App.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,11 +33,6 @@ namespace TradesApp
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    //services.AddScoped<TInterface, TImplementation>();
-                    //services.AddDbContext<AppDbContext>(options =>
-                    //{
-                    //    //options.UseSqlServer(connectionStr);
-                    //});
                     AddDatas(services);
                     AddSerices(services);
                     AddViews(services);
@@ -48,10 +46,14 @@ namespace TradesApp
         }
         private static void AddDatas(IServiceCollection services)
         {
-            services.AddSingleton<Config>();
+            Config config = new Config();
+            config.ConnectionString = ConfigurationManager.ConnectionStrings["AppDb"].ConnectionString;
+            services.AddSingleton<Config>(config);
         }
         private static void AddSerices(IServiceCollection services)
         {
+            services.AddTransient<IDBUserService, DBUserService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddSingleton<AppService>();
             services.AddSingleton<UiService>();
         }

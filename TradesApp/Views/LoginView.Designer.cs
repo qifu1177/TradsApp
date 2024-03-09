@@ -33,12 +33,13 @@
             label2 = new Label();
             tbUserName = new TextBox();
             tbPassword = new TextBox();
+            lbErrorMessage = new Label();
             SuspendLayout();
             // 
             // btLogin
             // 
             btLogin.AccessibleRole = AccessibleRole.None;
-            btLogin.Location = new Point(183, 152);
+            btLogin.Location = new Point(180, 138);
             btLogin.Name = "btLogin";
             btLogin.Size = new Size(94, 29);
             btLogin.TabIndex = 0;
@@ -49,7 +50,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(69, 51);
+            label1.Location = new Point(51, 51);
             label1.Name = "label1";
             label1.Size = new Size(111, 20);
             label1.TabIndex = 1;
@@ -58,7 +59,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(110, 99);
+            label2.Location = new Point(87, 99);
             label2.Name = "label2";
             label2.Size = new Size(66, 20);
             label2.TabIndex = 2;
@@ -67,7 +68,7 @@
             // tbUserName
             // 
             tbUserName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbUserName.Location = new Point(187, 48);
+            tbUserName.Location = new Point(180, 48);
             tbUserName.Name = "tbUserName";
             tbUserName.Size = new Size(294, 27);
             tbUserName.TabIndex = 3;
@@ -80,12 +81,21 @@
             tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(294, 27);
             tbPassword.TabIndex = 4;
-           
+            // 
+            // lbErrorMessage
+            // 
+            lbErrorMessage.AutoSize = true;
+            lbErrorMessage.ForeColor = Color.Red;
+            lbErrorMessage.Location = new Point(180, 194);
+            lbErrorMessage.Name = "lbErrorMessage";
+            lbErrorMessage.Size = new Size(0, 20);
+            lbErrorMessage.TabIndex = 5;
             // 
             // LoginView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbErrorMessage);
             Controls.Add(tbPassword);
             Controls.Add(tbUserName);
             Controls.Add(label2);
@@ -104,5 +114,6 @@
         private Label label2;
         private TextBox tbUserName;
         private TextBox tbPassword;
+        private Label lbErrorMessage;
     }
 }

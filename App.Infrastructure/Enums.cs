@@ -9,7 +9,7 @@ namespace App.Infrastructure
     public enum UserGroupType
     {
         Compliance = 0,
-        Handelsueberwachung,
-        Admin
+        Handelsueberwachung = 1,
+        Admin = 2
     }
 }
