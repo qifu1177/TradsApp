@@ -12,13 +12,13 @@ namespace TradesApp.Services
     {
         public static IServiceProvider ServiceProvider { get; set; }
         public Config Config { get; private set; }
-        public AppService(Config config) { 
-            Config = config;
-            Init();
-        }
-        private void Init()
+        public AppService(Config config)
         {
-            Config.ConnectionString= ConfigurationManager.ConnectionStrings["AppDb"].ConnectionString;
+            Config = config;
+        }
+        public void UpdateConnectionString(string userName, string password)
+        {
+            Config.ConnectionString = string.Format(ConfigurationManager.ConnectionStrings["AppDb"].ConnectionString, userName, password);
         }
     }
 }

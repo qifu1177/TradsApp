@@ -1,11 +1,8 @@
-﻿using App.DataAccess.Models;
+﻿
+using App.DataAccess.Models;
 using App.Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace App.DataAccess
 {

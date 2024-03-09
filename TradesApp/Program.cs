@@ -47,7 +47,6 @@ namespace TradesApp
         private static void AddDatas(IServiceCollection services)
         {
             Config config = new Config();
-            config.ConnectionString = ConfigurationManager.ConnectionStrings["AppDb"].ConnectionString;
             services.AddSingleton<Config>(config);
         }
         private static void AddSerices(IServiceCollection services)
