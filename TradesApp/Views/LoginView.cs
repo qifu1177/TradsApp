@@ -18,23 +18,33 @@ namespace TradesApp.Views
     {
         private IUserService _userService;
         private AppService _appService;
-        public event Action<UserGroupType> Login;
+        public event Action<User> Login;
         public LoginView(IUserService userService, AppService appService)
         {
             _userService = userService;
             _appService = appService;
             InitializeComponent();
+            Init();
         }
-
+        private void Init()
+        {
+            cbGroupType.Items.Clear();
+            var list = _userService.GroupList;
+            cbGroupType.DisplayMember= "Text";
+            cbGroupType.ValueMember = "Value";
+            cbGroupType.DataSource = list;
+            cbGroupType.SelectedIndex = 0;
+        }
         private void btLogin_Click(object sender, EventArgs e)
         {
             lbErrorMessage.Text = string.Empty;
             try
             {
                 _appService.UpdateConnectionString(tbUserName.Text, tbPassword.Text);
-                if (_userService.TryLogin(tbUserName.Text, tbPassword.Text, out User user))
+                UserGroup selctedGroup=(UserGroup)cbGroupType.SelectedItem;
+                if (_userService.TryLogin(tbUserName.Text, selctedGroup.Value, out User user))
                 {
-                    Login(user.UserGroup.UserGroupType);
+                    Login(user);
                 }
                 else
                 {

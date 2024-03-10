@@ -6,6 +6,6 @@ namespace App.Infrastructure.Interfaces
 {
     public interface IDBUserService
     {
-        public User LoadUser(string username,string password);
+        bool CheckUserGroup(string username,UserGroupType userGroupType);
     }
 }

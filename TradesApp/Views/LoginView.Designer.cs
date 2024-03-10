@@ -34,12 +34,14 @@
             tbUserName = new TextBox();
             tbPassword = new TextBox();
             lbErrorMessage = new Label();
+            label3 = new Label();
+            cbGroupType = new ComboBox();
             SuspendLayout();
             // 
             // btLogin
             // 
             btLogin.AccessibleRole = AccessibleRole.None;
-            btLogin.Location = new Point(180, 138);
+            btLogin.Location = new Point(180, 185);
             btLogin.Name = "btLogin";
             btLogin.Size = new Size(94, 29);
             btLogin.TabIndex = 0;
@@ -50,7 +52,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(51, 51);
+            label1.Location = new Point(42, 51);
             label1.Name = "label1";
             label1.Size = new Size(111, 20);
             label1.TabIndex = 1;
@@ -76,7 +78,7 @@
             // tbPassword
             // 
             tbPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbPassword.Location = new Point(182, 96);
+            tbPassword.Location = new Point(180, 92);
             tbPassword.Name = "tbPassword";
             tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(294, 27);
@@ -86,15 +88,35 @@
             // 
             lbErrorMessage.AutoSize = true;
             lbErrorMessage.ForeColor = Color.Red;
-            lbErrorMessage.Location = new Point(180, 194);
+            lbErrorMessage.Location = new Point(180, 229);
             lbErrorMessage.Name = "lbErrorMessage";
             lbErrorMessage.Size = new Size(0, 20);
             lbErrorMessage.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(71, 139);
+            label3.Name = "label3";
+            label3.Size = new Size(82, 20);
+            label3.TabIndex = 6;
+            label3.Text = "Gruppe Art";
+            // 
+            // cbGroupType
+            // 
+            cbGroupType.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cbGroupType.FormattingEnabled = true;
+            cbGroupType.Location = new Point(180, 136);
+            cbGroupType.Name = "cbGroupType";
+            cbGroupType.Size = new Size(294, 28);
+            cbGroupType.TabIndex = 7;
             // 
             // LoginView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(cbGroupType);
+            Controls.Add(label3);
             Controls.Add(lbErrorMessage);
             Controls.Add(tbPassword);
             Controls.Add(tbUserName);
@@ -102,7 +124,7 @@
             Controls.Add(label1);
             Controls.Add(btLogin);
             Name = "LoginView";
-            Size = new Size(519, 251);
+            Size = new Size(519, 268);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -115,5 +137,7 @@
         private TextBox tbUserName;
         private TextBox tbPassword;
         private Label lbErrorMessage;
+        private Label label3;
+        private ComboBox cbGroupType;
     }
 }

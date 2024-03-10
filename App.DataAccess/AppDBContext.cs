@@ -20,5 +20,15 @@ namespace App.DataAccess
                 optionsBuilder.UseSqlServer(_config.ConnectionString);
             }
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TablePrivileges>(entity =>
+            {
+                entity.HasKey(e => e.PRIVILEGE_TYPE);
+            });
+
+           base.OnModelCreating(modelBuilder);
+        }
+        public virtual DbSet<TablePrivileges> DbSetTablePrivileges { get; set; } = null!;
     }
 }

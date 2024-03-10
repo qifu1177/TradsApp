@@ -43,6 +43,9 @@ namespace TradesApp
             services.AddScoped<TradsApp>();
             services.AddTransient<LoginView>();
             services.AddTransient<MainView>();
+            services.AddTransient<EmployeeTradesView>();
+            services.AddTransient<TradesView>();
+            services.AddTransient<KursdatenView>();
         }
         private static void AddDatas(IServiceCollection services)
         {
