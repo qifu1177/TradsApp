@@ -34,6 +34,7 @@
             label2 = new Label();
             dtTo = new DateTimePicker();
             dgView = new DataGridView();
+            btUpdate = new Button();
             ((System.ComponentModel.ISupportInitialize)dgView).BeginInit();
             SuspendLayout();
             // 
@@ -58,6 +59,8 @@
             // 
             // dtFrom
             // 
+            dtFrom.CustomFormat = "dd.MM.yyyy HH:mm";
+            dtFrom.Format = DateTimePickerFormat.Custom;
             dtFrom.Location = new Point(187, 16);
             dtFrom.Name = "dtFrom";
             dtFrom.Size = new Size(250, 27);
@@ -74,6 +77,8 @@
             // 
             // dtTo
             // 
+            dtTo.CustomFormat = "dd.MM.yyyy HH:mm";
+            dtTo.Format = DateTimePickerFormat.Custom;
             dtTo.Location = new Point(187, 55);
             dtTo.Name = "dtTo";
             dtTo.Size = new Size(250, 27);
@@ -81,6 +86,9 @@
             // 
             // dgView
             // 
+            dgView.AllowUserToAddRows = false;
+            dgView.AllowUserToDeleteRows = false;
+            dgView.AllowUserToOrderColumns = true;
             dgView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgView.Location = new Point(15, 94);
@@ -90,10 +98,21 @@
             dgView.Size = new Size(757, 358);
             dgView.TabIndex = 5;
             // 
+            // btUpdate
+            // 
+            btUpdate.Location = new Point(24, 46);
+            btUpdate.Name = "btUpdate";
+            btUpdate.Size = new Size(94, 29);
+            btUpdate.TabIndex = 6;
+            btUpdate.Text = "Aktualisieren";
+            btUpdate.UseVisualStyleBackColor = true;
+            btUpdate.Click += btUpdate_Click;
+            // 
             // EmployeeTradesView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btUpdate);
             Controls.Add(dgView);
             Controls.Add(dtTo);
             Controls.Add(label2);
@@ -115,5 +134,6 @@
         private Label label2;
         private DateTimePicker dtTo;
         private DataGridView dgView;
+        private Button btUpdate;
     }
 }

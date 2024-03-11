@@ -104,7 +104,6 @@
             // 
             // cbGroupType
             // 
-            cbGroupType.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbGroupType.FormattingEnabled = true;
             cbGroupType.Location = new Point(180, 136);
             cbGroupType.Name = "cbGroupType";

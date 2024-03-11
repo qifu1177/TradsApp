@@ -11,9 +11,16 @@ namespace App.Infrastructure
     {
         [Description("Compliance")]
         Compliance = 0,
-        [Description("Handelsüberwachung ")]
+        [Description("Handelsüberwachung")]
         Handelsueberwachung = 1,
-        [Description("Admin ")]
+        [Description("Admin")]
         Admin = 2
+    }
+    public enum BusinessType
+    {
+        [Description("Kaufen")]
+        Buy = 0,
+        [Description("Verkaufen")]
+        Sell = 1,
     }
 }

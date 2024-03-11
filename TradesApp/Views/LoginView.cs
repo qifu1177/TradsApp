@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TradesApp.Models;
 using TradesApp.Services;
 
 namespace TradesApp.Views
@@ -18,18 +19,21 @@ namespace TradesApp.Views
     {
         private IUserService _userService;
         private AppService _appService;
+        private UiService _uiService;
         public event Action<User> Login;
-        public LoginView(IUserService userService, AppService appService)
+        public LoginView(IUserService userService, AppService appService, UiService uiService)
         {
             _userService = userService;
             _appService = appService;
+            _uiService = uiService;
             InitializeComponent();
             Init();
+            
         }
         private void Init()
         {
             cbGroupType.Items.Clear();
-            var list = _userService.GroupList;
+            var list = _uiService.GetEnumItems<UserGroupType>();
             cbGroupType.DisplayMember= "Text";
             cbGroupType.ValueMember = "Value";
             cbGroupType.DataSource = list;
@@ -41,8 +45,8 @@ namespace TradesApp.Views
             try
             {
                 _appService.UpdateConnectionString(tbUserName.Text, tbPassword.Text);
-                UserGroup selctedGroup=(UserGroup)cbGroupType.SelectedItem;
-                if (_userService.TryLogin(tbUserName.Text, selctedGroup.Value, out User user))
+                UserGroupType selctedGroup=(UserGroupType)cbGroupType.SelectedValue;
+                if (_userService.TryLogin(tbUserName.Text, selctedGroup, out User user))
                 {
                     Login(user);
                 }

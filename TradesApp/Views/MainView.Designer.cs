@@ -28,27 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listViewNavi = new ListView();
             btLogout = new Button();
             pnView = new Panel();
             label1 = new Label();
             lbUser = new Label();
+            listViewNavi = new ListBox();
             SuspendLayout();
-            // 
-            // listViewNavi
-            // 
-            listViewNavi.Alignment = ListViewAlignment.SnapToGrid;
-            listViewNavi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listViewNavi.Cursor = Cursors.Hand;
-            listViewNavi.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            listViewNavi.GridLines = true;
-            listViewNavi.HeaderStyle = ColumnHeaderStyle.None;
-            listViewNavi.Location = new Point(20, 108);
-            listViewNavi.MultiSelect = false;
-            listViewNavi.Name = "listViewNavi";
-            listViewNavi.Size = new Size(240, 158);
-            listViewNavi.TabIndex = 0;
-            listViewNavi.UseCompatibleStateImageBehavior = false;
             // 
             // btLogout
             // 
@@ -86,15 +71,28 @@
             lbUser.TabIndex = 4;
             lbUser.Text = "label2";
             // 
+            // listViewNavi
+            // 
+            listViewNavi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listViewNavi.BorderStyle = BorderStyle.None;
+            listViewNavi.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            listViewNavi.FormattingEnabled = true;
+            listViewNavi.ItemHeight = 25;
+            listViewNavi.Location = new Point(20, 108);
+            listViewNavi.Name = "listViewNavi";
+            listViewNavi.Size = new Size(221, 150);
+            listViewNavi.TabIndex = 5;
+            listViewNavi.SelectedValueChanged += listViewNavi_SelectedValueChanged;
+            // 
             // MainView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(listViewNavi);
             Controls.Add(lbUser);
             Controls.Add(label1);
             Controls.Add(pnView);
             Controls.Add(btLogout);
-            Controls.Add(listViewNavi);
             Name = "MainView";
             Size = new Size(609, 290);
             ResumeLayout(false);
@@ -102,11 +100,10 @@
         }
 
         #endregion
-
-        private ListView listViewNavi;
         private Button btLogout;
         private Panel pnView;
         private Label label1;
         private Label lbUser;
+        private ListBox listViewNavi;
     }
 }

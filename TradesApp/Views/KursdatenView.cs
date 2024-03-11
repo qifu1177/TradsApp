@@ -1,20 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using App.Infrastructure.Interfaces;
 
 namespace TradesApp.Views
 {
-    public partial class KursdatenView : UserControl
+    public partial class KursdatenView : AbstractDetailView
     {
-        public KursdatenView()
+        private ITradeDataService _dataService;
+        public KursdatenView(ITradeDataService dataService)
         {
+            _dataService = dataService;
             InitializeComponent();
+            Init();
+            LoadDatas();
+        }
+        private void Init()
+        {
+            dtFrom.Value = DateTime.Today;
+            dtTo.Value = DateTime.Now;
+        }
+
+        private void btUpdate_Click(object sender, EventArgs e)
+        {
+            LoadDatas();
+        }
+        private void LoadDatas()
+        {
+            DateTimeOffset sdt = DateTime.SpecifyKind(dtFrom.Value, DateTimeKind.Local);
+            DateTimeOffset edt = DateTime.SpecifyKind(dtTo.Value, DateTimeKind.Local);
+            var datas = _dataService.LoadDatas(sdt, edt);
+            
         }
     }
 }

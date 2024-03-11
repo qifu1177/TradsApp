@@ -1,7 +1,7 @@
 ﻿
 using App.Infrastructure.Datas;
+using TradesApp.Models;
 using TradesApp.Services;
-using TradesApp.Views.Items;
 
 namespace TradesApp.Views
 {
@@ -36,24 +36,23 @@ namespace TradesApp.Views
                 item.ParentView = pnView;
             }
             _menuItems = menuItems.ToDictionary(item => item.Name);
-            listViewNavi.Items.Clear();
-            foreach (var item in menuItems)
-            {
-                listViewNavi.Items.Add(new ListViewItem(item.Name));
-            }
-            listViewNavi.ItemSelectionChanged += ListViewNavi_ItemSelectionChanged;
-            listViewNavi.MultiSelect = false;
-            listViewNavi.Items[0].Selected = true;
+            listViewNavi.DisplayMember = "Name";
+            listViewNavi.ValueMember = "Name";            
+            listViewNavi.DataSource = menuItems;           
+           
         }
 
-        private void ListViewNavi_ItemSelectionChanged(object? sender, ListViewItemSelectionChangedEventArgs e)
-        {
 
-            if (!_selectedMenu.Equals(e.Item.Text) && _menuItems.TryGetValue(e.Item.Text, out var menuItem))
+        private void listViewNavi_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (listViewNavi.SelectedValue == null)
+                return;
+            string value = (string)listViewNavi.SelectedValue;
+            if (!_selectedMenu.Equals(value) && _menuItems.TryGetValue(value, out var menuItem))
             {
-                menuItem.AddToParent();
+                menuItem.AddToParent(_user);
             }
-            _selectedMenu = e.Item.Text;
+            _selectedMenu = value;
         }
     }
 }

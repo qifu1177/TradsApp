@@ -10,5 +10,6 @@ namespace App.Infrastructure.Common
     {
         public Config() { }
         public string ConnectionString{get;set;}
+        public string DataPageUrl { get;set;}
     }
 }

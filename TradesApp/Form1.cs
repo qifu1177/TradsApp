@@ -1,7 +1,7 @@
 using App.Infrastructure.Datas;
+using TradesApp.Models;
 using TradesApp.Services;
 using TradesApp.Views;
-using TradesApp.Views.Items;
 
 namespace TradesApp
 {
@@ -14,7 +14,7 @@ namespace TradesApp
             _appService = appSerivce;
             _uiService = uiService;
             InitializeComponent();
-
+            _uiService.MainForm = this;
         }
 
         private void TradsApp_Load(object sender, EventArgs e)

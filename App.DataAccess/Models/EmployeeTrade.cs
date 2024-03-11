@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Infrastructure;
+using System;
 using System.Collections.Generic;
 
 namespace App.DataAccess.Models

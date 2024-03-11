@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
+using TradesApp.Dialogs;
 using TradesApp.Services;
 using TradesApp.Views;
 
@@ -43,21 +44,28 @@ namespace TradesApp
             services.AddScoped<TradsApp>();
             services.AddTransient<LoginView>();
             services.AddTransient<MainView>();
-            services.AddTransient<EmployeeTradesView>();
-            services.AddTransient<TradesView>();
-            services.AddTransient<KursdatenView>();
+            services.AddScoped<EmployeeTradesView>();
+            services.AddScoped<TradesView>();
+            services.AddScoped<KursdatenView>();
+            services.AddTransient<EmployeeTradeInputDialog>();
         }
         private static void AddDatas(IServiceCollection services)
         {
             Config config = new Config();
+            config.DataPageUrl = ConfigurationManager.AppSettings["DataPage"];
             services.AddSingleton<Config>(config);
         }
         private static void AddSerices(IServiceCollection services)
         {
             services.AddTransient<IDBUserService, DBUserService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IDBEmployeeTradeService, DBEmployeeTradeService>();
+            services.AddTransient<IEmployeeTradeService, EmployeeTradeService>();
+            services.AddTransient<IDBTradeDataService, DBTradeDataService>();
+            services.AddTransient<ITradeDataService, TradeDataService>();
             services.AddSingleton<AppService>();
             services.AddSingleton<UiService>();
+            services.AddTransient<HtmlService>();
         }
     }
 }
