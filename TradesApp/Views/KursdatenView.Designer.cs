@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             btUpdate = new Button();
             dtTo = new DateTimePicker();
             label2 = new Label();
             dtFrom = new DateTimePicker();
             label1 = new Label();
+            chartView = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)chartView).BeginInit();
             SuspendLayout();
             // 
             // btUpdate
@@ -81,10 +86,34 @@
             label1.TabIndex = 14;
             label1.Text = "Von:";
             // 
+            // chartView
+            // 
+            chartView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            chartArea1.Name = "ChartArea1";
+            chartView.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartView.Legends.Add(legend1);
+            chartView.Location = new Point(22, 84);
+            chartView.Name = "chartView";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Kursdaten ";
+            series1.XValueMember = "TimeStamp";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series1.YValueMembers = "Price";
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            chartView.Series.Add(series1);
+            chartView.Size = new Size(583, 293);
+            chartView.TabIndex = 19;
+            chartView.Text = "chart";
+            // 
             // KursdatenView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(chartView);
             Controls.Add(btUpdate);
             Controls.Add(dtTo);
             Controls.Add(label2);
@@ -92,6 +121,7 @@
             Controls.Add(label1);
             Name = "KursdatenView";
             Size = new Size(635, 391);
+            ((System.ComponentModel.ISupportInitialize)chartView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,5 +133,6 @@
         private Label label2;
         private DateTimePicker dtFrom;
         private Label label1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartView;
     }
 }

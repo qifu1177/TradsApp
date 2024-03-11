@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using TradesApp.Dialogs;
+using TradesApp.Models;
 using TradesApp.Services;
 using TradesApp.Views;
 
@@ -48,12 +49,15 @@ namespace TradesApp
             services.AddScoped<TradesView>();
             services.AddScoped<KursdatenView>();
             services.AddTransient<EmployeeTradeInputDialog>();
+            services.AddTransient<AlarmDialog>();
+            services.AddTransient<SettingView>();
         }
         private static void AddDatas(IServiceCollection services)
         {
             Config config = new Config();
             config.DataPageUrl = ConfigurationManager.AppSettings["DataPage"];
             services.AddSingleton<Config>(config);
+            services.AddSingleton<Setting>();
         }
         private static void AddSerices(IServiceCollection services)
         {

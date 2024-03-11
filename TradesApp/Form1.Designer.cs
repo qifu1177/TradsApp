@@ -28,8 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            timerAlarm = new System.Windows.Forms.Timer(components);
             SuspendLayout();
+            // 
+            // timerAlarm
+            // 
+            timerAlarm.Interval = 600000;
+            timerAlarm.Tick += timerAlarm_Tick;
             // 
             // TradsApp
             // 
@@ -45,5 +52,6 @@
         #endregion
 
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Timer timerAlarm;
     }
 }
