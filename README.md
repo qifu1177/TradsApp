@@ -11,10 +11,10 @@ Um die Datenbank für die App zu initialisieren, folge diesen Schritten:
 7. Passe den Wert "Server" im connectionString-Attributs vom <add>-Element an, um die Datenbankverbindung anzugeben. 
 # Abhängigkeiten
 Die App verwendet folgende Bibliotheken und Frameworks:
-. Dependency Injection für die Verwaltung von Abhängigkeiten
-. Entity Framework Core für den Zugriff auf die Datenbank (Sql Express)
-. WinForms.DataVisualization für die grafische Darstellung von Handelsdaten
-. Selenium für das Laden von Daten aus Webseiten, erfordert die Unterstützung von Chrome
+1. Dependency Injection für die Verwaltung von Abhängigkeiten
+2. Entity Framework Core für den Zugriff auf die Datenbank (Sql Express)
+3. WinForms.DataVisualization für die grafische Darstellung von Handelsdaten
+4. Selenium für das Laden von Daten aus Webseiten, erfordert die Unterstützung von Chrome
 # Sicherheitskonzept
 ## Authentifizierung und Autorisierung auf Datenbankebene
 Jeder Benutzer authentifiziert sich mit einem eindeutigen Benutzernamen und Passwort, um auf die Datenbank zuzugreifen. Und die App verwendet die selbe Benutzername und Passwort für die Anmeldung.
