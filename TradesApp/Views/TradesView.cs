@@ -56,6 +56,7 @@ namespace TradesApp.Views
             try
             {
                 var datas = await _htmlService.LoadDatasFromWebPage(_config.DataPageUrl);
+                datas = datas.OrderBy(x => x.TimeStamp).ToList();
                 var list = new List<TradeData>();
                 DateTime max = DateTime.MinValue;
                 foreach (var data in datas)

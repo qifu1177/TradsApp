@@ -43,8 +43,14 @@ namespace TradesApp.Views
                     min = item.Price;
                 bindingList.Add(item);
             }
-            min = min * 0.9m;
-            max = max * 1.1m;
+            if(datas.Length == 0) {
+                min = 0;
+                max = 100;
+            }else
+            {
+                min = min * 0.9m;
+                max = max * 1.1m;
+            }           
             chartView.ChartAreas[0].AxisY.IsStartedFromZero = false;
             chartView.ChartAreas[0].AxisY.Maximum = Convert.ToDouble(max);
             chartView.ChartAreas[0].AxisY.Minimum = Convert.ToDouble(min);

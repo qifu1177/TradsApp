@@ -70,7 +70,7 @@
             label2.Name = "label2";
             label2.Size = new Size(192, 20);
             label2.TabIndex = 2;
-            label2.Text = "Alarm-Volumenänderungen";
+            label2.Text = "Alarm-Volumen";
             // 
             // SettingView
             // 

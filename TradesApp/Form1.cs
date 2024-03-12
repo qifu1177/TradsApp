@@ -13,6 +13,7 @@ namespace TradesApp
         private UiService _uiService;
         private ITradeDataService _dataService;
         private Setting _setting;
+        DateTime _sdt = DateTime.Today;
         public TradsApp(AppService appSerivce, UiService uiService, ITradeDataService dataService, Setting setting)
         {
             _appService = appSerivce;
@@ -21,6 +22,7 @@ namespace TradesApp
             _setting = setting;
             InitializeComponent();
             _uiService.MainForm = this;
+            timerAlarm.Interval = _setting.AlarmIntervalMinutes * 60 * 1000;
         }
 
         private void TradsApp_Load(object sender, EventArgs e)
@@ -38,6 +40,7 @@ namespace TradesApp
         {
             timerAlarm.Stop();
             timerAlarm.Enabled = false;
+            _sdt = DateTime.Today;
             AddLoginView();
         }
         private void AddLoginView()
@@ -99,26 +102,30 @@ namespace TradesApp
         }
         private void timerAlarm_Tick(object sender, EventArgs e)
         {
-            DateTime edt = DateTime.Now;
-            DateTime sdt = edt.AddMilliseconds(0 - timerAlarm.Interval);
-            var list = _dataService.LoadDatas(sdt, edt).OrderBy(item => item.TimeStamp).ToArray();
-            List<TradeData> alarmList= new List<TradeData>();
-            for (int i = 1; i < list.Length; i++)
+            DateTime edt = DateTime.Now;            
+            var list = _dataService.LoadDatas(_sdt, edt).OrderBy(item => item.TimeStamp).ToArray();
+            List<TradeData> alarmList = new List<TradeData>();
+            for (int i = 0; i < list.Length; i++)
             {
+                if (i == 0 && list[i].VolumePieces > _setting.AlarmVolumen)
+                {
+                    alarmList.Add(list[i]);
+                    continue;
+                }
                 var deltaPrice = Math.Abs(list[i].Price - list[i - 1].Price);
-                var deltaVolumen = list[i].VolumeEuro - list[i - 1].VolumeEuro;
-                if(deltaPrice>_setting.AlarmChangeValue || deltaVolumen>_setting.AlarmChangeVolumne)
+                if (deltaPrice > _setting.AlarmChangeValue || list[i].VolumePieces > _setting.AlarmVolumen)
                 {
                     alarmList.Add(list[i]);
                 }
             }
-            if(alarmList.Count > 0)
+            if (alarmList.Count > 0)
             {
                 _uiService.ShowDialog<AlarmDialog>((form) =>
                 {
                     form.InitData(alarmList);
                 }, null, null);
             }
+            _sdt = edt;
         }
     }
 }

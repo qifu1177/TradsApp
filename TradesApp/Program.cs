@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
+using System.Text.RegularExpressions;
 using TradesApp.Dialogs;
 using TradesApp.Models;
 using TradesApp.Services;
@@ -57,7 +58,28 @@ namespace TradesApp
             Config config = new Config();
             config.DataPageUrl = ConfigurationManager.AppSettings["DataPage"];
             services.AddSingleton<Config>(config);
-            services.AddSingleton<Setting>();
+            Setting setting = new Setting();
+            InitSetting(setting);
+            services.AddSingleton<Setting>(setting);
+        }
+        private static void InitSetting(Setting setting)
+        {
+            Regex regex = new Regex(@"^\d+$");
+            string alarmIntervalMinutes = ConfigurationManager.AppSettings["AlarmIntervalMinutes"];
+            if (regex.IsMatch(alarmIntervalMinutes))
+            {
+                setting.AlarmIntervalMinutes = Convert.ToInt32(alarmIntervalMinutes);
+            }
+            string defaultAlarmChangeOfPrice = ConfigurationManager.AppSettings["DefaultAlarmChangeOfPrice"];
+            if (regex.IsMatch(defaultAlarmChangeOfPrice))
+            {
+                setting.AlarmChangeValue = Convert.ToDecimal(defaultAlarmChangeOfPrice);
+            }
+            string defaultAlarmVolumen = ConfigurationManager.AppSettings["DefaultAlarmVolumen"];
+            if (regex.IsMatch(defaultAlarmVolumen))
+            {
+                setting.AlarmVolumen = Convert.ToInt32(defaultAlarmVolumen);
+            }
         }
         private static void AddSerices(IServiceCollection services)
         {

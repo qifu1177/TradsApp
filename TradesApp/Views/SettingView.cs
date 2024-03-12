@@ -23,7 +23,7 @@ namespace TradesApp.Views
         private void Init()
         {
             tbAlarmChangePrice.Value = _setting.AlarmChangeValue;
-            tbAlarmChangeVolumen.Value = _setting.AlarmChangeVolumne;
+            tbAlarmChangeVolumen.Value = _setting.AlarmVolumen;
         }
 
         private void tbAlarmChangePrice_ValueChanged(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace TradesApp.Views
 
         private void tbAlarmChangeVolumen_ValueChanged(object sender, EventArgs e)
         {
-            _setting.AlarmChangeVolumne = Convert.ToInt32(tbAlarmChangeVolumen.Value);
+            _setting.AlarmVolumen = Convert.ToInt32(tbAlarmChangeVolumen.Value);
         }
     }
 }
